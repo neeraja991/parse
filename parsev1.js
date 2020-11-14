@@ -1,3 +1,4 @@
+"use strict";
 var http = require('http');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -11,19 +12,10 @@ app.get('/api/v1/parse', function (req, res, next) {
 });
 app.post('/post1', function (req, res, next) {
     console.log('data from v1: ', req.body.value1);
-    res.status(200).send('OK')
-    res.redirect('/api/v1/parse');
-});
-
-var server = http.createServer(app);
-server.listen(3000);
-
-app.use('/', function (req, res, next) {
-    res.send('<h1> first midleware </h1>');
-    // res.status(200).send('OK')
-
-function sayName(o) {
-    var str = "JOHN0000MICHAEL0009994567";
+       
+        function sayName(o) {
+    var str = o.body.value1;
+    console.log(str);
     var fN = str.substring(0, 8);
     var fN1 = fN.split("0");
     var fN2 = fN1.splice(0, 1);
@@ -43,11 +35,24 @@ function sayName(o) {
     const data = JSON.stringify(obj);
     console.log(data);
     
+   // res.status(200).send('OK');
+    res.end(JSON.stringify({data}));
+
     // {"firstName":["JOHN"],"lastName":["MICHAEL"],"clientId":"9994567"}
 }
 const v2p = {
     name: "JOHN0000MICHAEL0009994567"
 };
-sayName(v2p);
+sayName(req);
+
+    
 });
 
+var server = http.createServer(app);
+server.listen(3000);
+
+app.use('/post1', function (req, res, next) {
+    //res.send('<h1> first midleware </h1>');
+     res.status(200).send('OK');
+    
+});

@@ -27,16 +27,21 @@ app.post('/post1', function (req, res, next) {
     var cI = str.substring(18, 25);
     console.log(cI);
     //convert string to Json and display in console
-    const data = {
+    var status = 200;
+    const data1 = {
         firstName: fN2,
         lastName: lN2,
         clientId: cI
     };
-   // const data = JSON.stringify(obj);
-    console.log(data);
-    
+   
+    console.log(data1);
+    const obj = {
+      statusCode: status,
+      data: data1
+    }
+    const d = JSON.stringify(obj);
    // res.status(200).send('OK');
-    res.end(JSON.stringify({data}));
+    res.end(d);
 
     // {"firstName":["JOHN"],"lastName":["MICHAEL"],"clientId":"9994567"}
 }

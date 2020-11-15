@@ -8,7 +8,7 @@ app.use('/', function (req, res, next) {
     next();
 });
 app.get('/api/v2/parse', function (req, res, next) {
-    res.send('<h2>V1 Parse</h2><br><form action="/post2" method="POST"> <input type="text" name="value2"> <button type="submit"> Send </button> </form>');
+    res.send('<h2>V2 Parse</h2><br><form action="/post2" method="POST"> <input type="text" name="value2"> <button type="submit"> Send </button> </form>');
 });
 app.post('/post2', function (req, res, next) {
     console.log('data from v2: ', req.body.value2);
@@ -30,12 +30,12 @@ app.post('/post2', function (req, res, next) {
     cI3 = cI3 + "-" + cI4;
     console.log(cI3);
     //convert string to Json and display in console
-    const obj = {
+    const data = {
         firstName: fN2,
         lastName: lN2,
         clientId: cI3
     };
-    const data = JSON.stringify(obj);
+   // const data = JSON.stringify(obj);
     console.log(data);
     
    // res.status(200).send('OK');

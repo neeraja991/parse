@@ -12,8 +12,7 @@ app.get('/api/v2/parse', function (req, res, next) {
 });
 app.post('/post2', function (req, res, next) {
     console.log('data from v2: ', req.body.value2);
-       
-        function sayName(o) {
+function sayName(o) {
     var str = o.body.value2;
     console.log(str);
     var fN = str.substring(0, 8);
@@ -30,32 +29,27 @@ app.post('/post2', function (req, res, next) {
     cI3 = cI3 + "-" + cI4;
     console.log(cI3);
     //convert string to Json and display in console
-    const data = {
+   //OUTPUT
+   var status = 200;
+    const data1 = {
         firstName: fN2,
         lastName: lN2,
         clientId: cI3
     };
-   // const data = JSON.stringify(obj);
-    console.log(data);
-    
+   // {"firstName":["JOHN"],"lastName":["MICHAEL"],"clientId":"999-4567"}
+    console.log(data1);
+    const obj = {
+      statusCode: status,
+      data: data1
+    }
+    const d = JSON.stringify(obj);
    // res.status(200).send('OK');
-    res.end(JSON.stringify({data}));
-
-    // {"firstName":["JOHN"],"lastName":["MICHAEL"],"clientId":"9994567"}
-}
-const v2p = {
-    name: "JOHN0000MICHAEL0009994567"
-};
+    res.end(d);
+   }
 sayName(req);
-
-    
 });
 
 var server = http.createServer(app);
 server.listen(3000);
 
-app.use('/post2', function (req, res, next) {
-    //res.send('<h1> first midleware </h1>');
-     res.status(200).send('OK');
-    
-});
+

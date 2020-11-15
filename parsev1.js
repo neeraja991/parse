@@ -36,7 +36,7 @@ app.post('/post1', function (req, res, next) {
     console.log(data);
     
    // res.status(200).send('OK');
-    res.end(JSON.stringify({data}));
+    res.end(JSON.stringify({obj}));
 
     // {"firstName":["JOHN"],"lastName":["MICHAEL"],"clientId":"9994567"}
 }
